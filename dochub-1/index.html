@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DocHub — Live Preview</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#070b12">
+  <style>
+    :root {
+      --bg: #070b12;
+      --bg-2: #0d1420;
+      --fg: #e6e8eb;
+      --muted: #9aa3ad;
+      --border: rgba(255,255,255,.08);
+      --accent: #7aa2ff;
+      --accent-2: #9b7aff;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      background:radial-gradient(1200px 800px at 80% -10%, #1a2350 0%, transparent 55%),
+                 radial-gradient(900px 700px at -10% 10%, #1d5c71 0%, transparent 55%),
+                 linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      background-attachment:fixed}
+    .noise::before{content:"";position:fixed;inset:0;pointer-events:none;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.035"/></svg>');
+      mix-blend-mode:soft-light;z-index:0}
+    a{color:inherit;text-decoration:none} .wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:28px 20px 64px}
+
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(12px);position:sticky;top:14px;box-shadow:var(--shadow)}
+    .brand{display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:.3px}
+    .brand .logo{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 120deg, var(--accent), var(--accent-2), #4dd2ff, var(--accent));filter:drop-shadow(0 6px 16px rgba(122,162,255,.35))}
+    .brand small{color:var(--muted);font-weight:500;display:block;line-height:1;margin-top:2px}
+
+    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(0,0,0,.06);color:var(--fg);font-weight:700;transition:transform .15s ease,border-color .2s ease,background .2s ease}
+    .btn:hover{transform:translateY(-1px);border-color:rgba(100,140,240,.45)}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border:0;color:#fff}
+    .btn.ghost{background:transparent;backdrop-filter:blur(10px)}
+
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;margin-top:24px}
+    @media(max-width:980px){.hero{grid-template-columns:1fr}}
+    .h-eyebrow{display:inline-flex;gap:10px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.08);color:var(--muted)}
+    h1{font-size:clamp(32px,6vw,54px);line-height:1.05;margin:14px 0 10px}
+    .gradient-text{background:linear-gradient(90deg,#3b82f6,#a855f7,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{color:var(--muted);font-size:clamp(16px,2.2vw,18px)}
+    .cta{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 10px}
+
+    .hero-card{position:relative;border-radius:18px;padding:16px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));box-shadow:var(--shadow);transform-style:preserve-3d;perspective:900px;transition:transform .2s ease}
+    .hero-card .frame{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);transform:translateZ(30px)}
+    .hero-card .glow{content:"";position:absolute;inset:-60px;border-radius:28px;background:conic-gradient(from 0deg, var(--accent), var(--accent-2), #4dd2ff, var(--accent));filter:blur(36px);opacity:.24;animation:spin 12s linear infinite;z-index:0}
+    .shot{width:100%;aspect-ratio:16/9;display:block;object-fit:cover;background:#0e1520;position:relative;z-index:1}
+    .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.12),transparent 40%);transform:translateX(-120%);animation:shine 3.6s ease-in-out infinite}
+    @keyframes shine{0%{transform:translateX(-120%)}50%{transform:translateX(120%)}100%{transform:translateX(120%)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .pill{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--muted);font-size:.85rem;display:inline-flex;gap:8px;align-items:center}
+
+    .section{margin:120px 0 10px}
+    .section h2{font-size:clamp(22px,3.4vw,32px);margin:0 0 14px}
+    .grid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+    .card{border-radius:14px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));padding:16px;transition:transform .15s ease,border-color .2s ease,background .2s ease}
+    .card:hover{transform:translateY(-2px);border-color:rgba(100,140,240,.45)}
+    .icn{width:26px;height:26px;border-radius:8px;display:inline-grid;place-items:center;background:linear-gradient(135deg,rgba(60,116,255,.15),rgba(140,75,255,.15));border:1px solid rgba(60,116,255,.25);margin-right:8px}
+
+    .steps{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:920px){.steps{grid-template-columns:1fr}}
+    .step{display:flex;gap:12px;align-items:flex-start;border-radius:14px;padding:14px;border:1px dashed var(--border);background:rgba(255,255,255,.04)}
+    .num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:800;display:grid;place-items:center}
+
+    .footer{color:var(--muted);font-size:.9rem;margin:32px 0 6px;text-align:center}
+    .float-cta{position:fixed;right:18px;bottom:18px;display:flex;gap:10px;z-index:5}
+  
+/* --- Auto slider + thumbs --- */
+.slider{position:relative;aspect-ratio:16/9;min-height:280px}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.slide.active{opacity:1}
+.dots{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+.dots button{width:9px;height:9px;border-radius:999px;border:1px solid var(--border,rgba(255,255,255,.15));background:rgba(0,0,0,.3);padding:0}
+.dots button[aria-selected="true"]{background:var(--accent,#7aa2ff);border-color:transparent}
+/* thumbs */
+.thumbs{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);display:flex;gap:8px;z-index:3;flex-wrap:wrap;justify-content:center}
+.thumbs button{width:44px;height:28px;border-radius:6px;border:1px solid var(--border, rgba(255,255,255,.15));background:#000;opacity:.78;overflow:hidden;padding:0;cursor:pointer}
+.thumbs button[aria-selected="true"]{outline:2px solid var(--accent,#7aa2ff);opacity:1}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+/* gallery modal */
+.dh-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);z-index:60}
+.dh-modal.show{display:flex}
+.dh-modal .dh-frame{position:relative;max-width:min(92vw,1200px);max-height:82vh;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.15);background:#0b1220}
+.dh-modal img{display:block;max-width:100%;max-height:82vh;object-fit:contain;background:#0b1220}
+.dh-cap{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.55));font:600 14px/1.2 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+.dh-x,.dh-prev,.dh-next{position:absolute;top:8px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px 10px;font-weight:800;cursor:pointer}
+.dh-x{right:8px}
+.dh-prev{left:8px;top:calc(50% - 20px)}
+.dh-next{right:8px;top:calc(50% - 20px)}
+
+</style>
+</head>
+<body class="noise">
+<div class="wrap">
+  <div class="nav">
+    <div class="brand"><div class="logo" aria-hidden="true"></div><div>DocHub<small>DocHub - Document Hub</small></div></div>
+    <div class="actions">
+      <a class="btn ghost" href="index.light.html">Switch to Light</a>
+      <a class="btn primary" href="app/" target="_blank" rel="noopener">Launch Demo</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <span class="h-eyebrow">v1.0 — No backend, all front‑end</span>
+      <h1>Design‑first <span class="gradient-text">Document Hub</span> for modern teams.</h1>
+      <p class="lead">Create, tag, and organize documents with smart filters, comments, bulk actions and brandable themes. Runs entirely in the browser with zero server setup.</p>
+      <div class="cta">
+        <a class="btn primary" href="app/" target="_blank" rel="noopener">Launch Demo</a>
+        <button class="btn" id="reset">Reset Demo Data</button>
+      </div>
+      <div class="badges"><span class="pill">ES Modules</span><span class="pill">No Backend</span><span class="pill">Bootstrap 5</span><span class="pill">LocalStorage</span></div>
+    </div>
+    <div class="hero-card" id="tilt-card">
+      <div class="glow"></div>
+      <div class="frame slider" id="demo-slider">
+  <img class="shot slide active" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720' viewBox='0 0 1280 720'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#101826'/><stop offset='1' stop-color='#293247'/></linearGradient></defs><rect width='1280' height='720' fill='url(#g)'/><g fill='rgba(255,255,255,.92)' font-family='Arial' text-anchor='middle'><text x='640' y='380' font-size='44' font-weight='700'>Drop assets/preview-{1..3}.png</text></g></svg>" alt="DocHub preview 1" loading="lazy" decoding="async" data-caption="DocHub — Demo 1" data-srcs='["assets/preview-1.png","assets/preview-1.svg","assets/preview.png"]'>
+  <img class="shot slide" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720' viewBox='0 0 1280 720'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#101826'/><stop offset='1' stop-color='#293247'/></linearGradient></defs><rect width='1280' height='720' fill='url(#g)'/><g fill='rgba(255,255,255,.92)' font-family='Arial' text-anchor='middle'><text x='640' y='380' font-size='44' font-weight='700'>Drop assets/preview-{1..3}.png</text></g></svg>" alt="DocHub preview 2" loading="lazy" decoding="async" data-caption="DocHub — Demo 2" data-srcs='["assets/preview-2.png","assets/preview-2.svg","assets/preview.png"]'>
+  <img class="shot slide" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720' viewBox='0 0 1280 720'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#101826'/><stop offset='1' stop-color='#293247'/></linearGradient></defs><rect width='1280' height='720' fill='url(#g)'/><g fill='rgba(255,255,255,.92)' font-family='Arial' text-anchor='middle'><text x='640' y='380' font-size='44' font-weight='700'>Drop assets/preview-{1..3}.png</text></g></svg>" alt="DocHub preview 3" loading="lazy" decoding="async" data-caption="DocHub — Demo 3" data-srcs='["assets/preview-3.png","assets/preview-3.svg","assets/preview.png"]'>
+  <div class="dots" role="tablist" aria-label="Demo slides"></div>
+</div>
+    </div>
+  </section>
+
+  <section class="section"><h2>Highlights</h2>
+    <div class="grid">
+      <div class="card"><span class="icn" aria-hidden="true">🧭</span><h3>Smart Filters</h3><p>Save, reorder, and manage filters to jump to what matters instantly.</p></div>
+      <div class="card"><span class="icn" aria-hidden="true">🏷️</span><h3>Tags Admin</h3><p>Rename, merge and delete tags to keep your taxonomy tidy.</p></div>
+      <div class="card"><span class="icn" aria-hidden="true">⭐</span><h3>Bookmarks & Starred</h3><p>Pin important docs and jump back fast.</p></div>
+      <div class="card"><span class="icn" aria-hidden="true">💬</span><h3>Comments & Activity</h3><p>Lightweight team chatter with a community activity feed.</p></div>
+      <div class="card"><span class="icn" aria-hidden="true">📎</span><h3>Attachments & PDF</h3><p>Optional PDF.js viewer with a polished attachments UI.</p></div>
+      <div class="card"><span class="icn" aria-hidden="true">🎨</span><h3>Theme & Brand</h3><p>Auto/Light/Dark, brand palettes, density toggle and shortcuts.</p></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>Get started in 3 steps</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><strong>Open the Demo.</strong><br><span class="note">Click <em>Launch Demo</em> above.</span></div></div>
+      <div class="step"><div class="num">2</div><div><strong>Add a few docs.</strong><br><span class="note">Use Quick Add or the + button to create records.</span></div></div>
+      <div class="step"><div class="num">3</div><div><strong>Try filters & tags.</strong><br><span class="note">Save a Smart Filter, star a doc, change theme (T).</span></div></div>
+      <div class="step"><div class="num">★</div><div><strong>Optional offline.</strong><br><span class="note">Test <em>Offline Vendors Demo</em> without CDNs.</span></div></div>
+    </div>
+  </section>
+
+  <p class="footer">Updated August 25, 2025. This preview includes the full app under <code>/dist</code>. © 2025 DocHub.</p>
+</div>
+
+<div class="float-cta"><a class="btn primary" href="app/" target="_blank" rel="noopener">Launch Demo</a></div>
+
+<script>
+document.getElementById('reset')?.addEventListener('click', function(){try{localStorage.clear();alert('LocalStorage cleared for this origin.')}catch(e){alert('Unable to clear localStorage: '+e.message)}});
+var card=document.getElementById('tilt-card');if(card){var b=null;var s=8;function mm(e){b=b||card.getBoundingClientRect();var cx=e.clientX-b.left,cy=e.clientY-b.top;var rx=((cy/b.height)-.5)*-s, ry=((cx/b.width)-.5)*s;card.style.transform='perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg)'}card.addEventListener('mousemove',mm);card.addEventListener('mouseleave',function(){card.style.transform='';b=null});window.addEventListener('resize',function(){b=null})}
+</script>
+
+<script>
+// --- Confetti (no deps) ---
+(function(){
+  function burst(x, y) {
+    const c = document.createElement('canvas');
+    c.width = innerWidth; c.height = innerHeight;
+    c.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9';
+    document.body.appendChild(c);
+    const ctx = c.getContext('2d');
+    const N = 140; // particles
+    const parts = [];
+    const colors = ['#7aa2ff','#9b7aff','#4dd2ff','#86e7ff','#ffc6ff','#5be49b','#ffd166'];
+    const origin = { x: x ?? innerWidth*0.5, y: y ?? innerHeight*0.35 };
+    for (let i=0;i<N;i++){
+      const ang = Math.random()*Math.PI*2;
+      const speed = 6 + Math.random()*6;
+      parts.push({
+        x: origin.x, y: origin.y,
+        vx: Math.cos(ang)*speed,
+        vy: Math.sin(ang)*speed - 4*(Math.random()*.8),
+        size: 3 + Math.random()*4,
+        rot: Math.random()*Math.PI,
+        vr: (-0.2 + Math.random()*0.4),
+        g: 0.18 + Math.random()*0.08,
+        life: 900 + Math.random()*600,
+        color: colors[(Math.random()*colors.length)|0],
+        shape: (Math.random()<0.5?'rect':'tri')
+      });
+    }
+    const t0 = performance.now();
+    const F = 1000/60;
+    (function loop(t){
+      const dt = Math.min(33, t - (loop.t || t)); loop.t = t;
+      ctx.clearRect(0,0,c.width,c.height);
+      let alive = false;
+      for (const p of parts){
+        p.life -= dt;
+        if (p.life <= 0) continue;
+        alive = true;
+        p.vy += p.g;
+        p.x += p.vx; p.y += p.vy;
+        p.rot += p.vr;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        if (p.shape==='rect'){
+          ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*1.4);
+        } else {
+          ctx.beginPath();
+          ctx.moveTo(0, -p.size);
+          ctx.lineTo(p.size, p.size);
+          ctx.lineTo(-p.size, p.size);
+          ctx.closePath();
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+      if (alive) requestAnimationFrame(loop);
+      else c.remove();
+    })(t0);
+  }
+
+  // Attach to all "Launch Demo" links
+  function attachConfetti(){
+    document.querySelectorAll('a[href="app/"]').forEach(a => {
+      a.addEventListener('click', function(ev){
+        // coords near the link for nicer effect
+        const r = a.getBoundingClientRect();
+        burst(r.left + r.width/2, r.top + window.scrollY);
+        // no preventDefault -> still opens in a new tab if target="_blank"
+      });
+    });
+  }
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', attachConfetti);
+  else attachConfetti();
+
+  // Keyboard shortcuts: L -> light, D -> dark
+  document.addEventListener('keydown', function(e){
+    const tag = (document.activeElement && document.activeElement.tagName) || '';
+    if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+    if (e.key === 'l' || e.key === 'L'){
+      if (!/index\.light\.html$/.test(location.pathname)) location.href = 'index.light.html';
+    } else if (e.key === 'd' || e.key === 'D'){
+      if (!/index\.html$/.test(location.pathname) || /index\.light\.html$/.test(location.pathname)) location.href = 'index.html';
+    }
+  });
+})();
+</script>
+
+
+<!-- UX Enhancements: toast + throttled confetti + hotkeys -->
+<script>
+(function(){
+  // Inject minimal toast styles
+  const css = `.toast{
+    position:fixed; left:50%; top:16px; transform:translateX(-50%);
+    background:rgba(10,20,35,.9); color:#fff; padding:10px 14px; border-radius:10px;
+    border:1px solid rgba(255,255,255,.15); box-shadow:0 10px 30px rgba(0,0,0,.25);
+    font:600 14px/1.1 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    z-index:10; opacity:0; transition:opacity .2s ease, transform .2s ease;
+  } .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }`;
+  const style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
+
+  function showToast(msg){
+    const t = document.createElement('div');
+    t.className = 'toast'; t.setAttribute('role','status'); t.textContent = msg;
+    document.body.appendChild(t);
+    requestAnimationFrame(()=> t.classList.add('show'));
+    setTimeout(()=> { t.classList.remove('show'); setTimeout(()=> t.remove(), 200); }, 1800);
+  }
+
+  // On load, show any pending toast (set via sessionStorage before navigation)
+  try {
+    const pending = sessionStorage.getItem('dochub_toast');
+    if (pending) { showToast(pending); sessionStorage.removeItem('dochub_toast'); }
+  } catch (_) {}
+
+  // Intercept "Switch theme" link to set toast before navigating
+  document.querySelectorAll('.actions a[href$="index.light.html"], .actions a[href$="index.html"]').forEach(a => {
+    a.addEventListener('click', function(e){
+      const isLight = a.getAttribute('href').endsWith('index.light.html');
+      try { sessionStorage.setItem('dochub_toast', 'Theme: ' + (isLight ? 'Light' : 'Dark')); } catch (_){}
+    }, {capture:true});
+  });
+
+  // Override keyboard shortcuts (capture) to set toast + navigate
+  document.addEventListener('keydown', function(e){
+    const tag = (document.activeElement && document.activeElement.tagName) || '';
+    if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+    if (e.key === 'l' || e.key === 'L'){
+      try { sessionStorage.setItem('dochub_toast', 'Theme: Light'); } catch(_){}
+      e.preventDefault(); e.stopPropagation();
+      if (!/index\.light\.html$/.test(location.pathname)) location.href = 'index.light.html';
+    } else if (e.key === 'd' || e.key === 'D'){
+      try { sessionStorage.setItem('dochub_toast', 'Theme: Dark'); } catch(_){}
+      e.preventDefault(); e.stopPropagation();
+      if (!/index\.html$/.test(location.pathname) || /index\.light\.html$/.test(location.pathname)) location.href = 'index.html';
+    }
+  }, {capture:true});
+
+  // Throttled confetti on Launch Demo (capture to cancel earlier handler)
+  function confetti(x, y) {
+    const c = document.createElement('canvas');
+    c.width = innerWidth; c.height = innerHeight;
+    c.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9';
+    document.body.appendChild(c);
+    const ctx = c.getContext('2d'), N = 110;
+    const parts = [], colors = ['#7aa2ff','#9b7aff','#4dd2ff','#86e7ff','#ffc6ff','#5be49b','#ffd166'];
+    const origin = { x: x ?? innerWidth*0.5, y: y ?? innerHeight*0.35 };
+    for (let i=0;i<N;i++){
+      const ang = Math.random()*Math.PI*2, sp = 6 + Math.random()*6;
+      parts.push({ x:origin.x, y:origin.y, vx:Math.cos(ang)*sp, vy:Math.sin(ang)*sp - 3.5*(Math.random()*.8),
+        size: 2.8 + Math.random()*3.6, rot: Math.random()*Math.PI, vr: (-0.2 + Math.random()*0.4),
+        g: 0.18 + Math.random()*0.08, life: 900 + Math.random()*600, color: colors[(Math.random()*colors.length)|0],
+        shape: (Math.random()<0.5?'rect':'tri') });
+    }
+    (function loop(t){ const dt = Math.min(33, t - (loop.t || t)); loop.t = t;
+      ctx.clearRect(0,0,c.width,c.height); let alive=false;
+      for (const p of parts){ p.life -= dt; if (p.life <= 0) continue; alive=true; p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.color;
+        if (p.shape==='rect') ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*1.4);
+        else { ctx.beginPath(); ctx.moveTo(0,-p.size); ctx.lineTo(p.size,p.size); ctx.lineTo(-p.size,p.size); ctx.closePath(); ctx.fill(); }
+        ctx.restore(); }
+      if (alive) requestAnimationFrame(loop); else c.remove();
+    })(performance.now());
+  }
+
+  document.querySelectorAll('a[href="app/"]').forEach(a => {
+    a.addEventListener('click', function(ev){
+      const now = Date.now();
+      if (window.__demoConfettiLast && (now - window.__demoConfettiLast) < 1200) {
+        ev.stopPropagation(); // swallow earlier listeners
+        return;
+      }
+      window.__demoConfettiLast = now;
+      const r = a.getBoundingClientRect();
+      confetti(r.left + r.width/2, r.top + window.scrollY);
+      // let navigation continue
+      ev.stopPropagation(); // block duplicate handlers that may also fire
+    }, {capture:true});
+  });
+
+})();
+</script>
+
+
+<script>
+/* Self-healing image upgrade (no 404s) */
+(function(){
+  function upgrade(img){
+    let list = [];
+    try { list = JSON.parse(img.getAttribute('data-srcs') || '[]'); } catch(_) { list = []; }
+    if (!list.length) return;
+    let i = 0;
+    function tryNext(){
+      if (i >= list.length) return;
+      const url = list[i++];
+      const test = new Image();
+      test.onload = function(){ img.src = url; };
+      test.onerror = function(){ tryNext(); };
+      test.src = url + (url.includes('?') ? '&' : '?') + 'v=' + Date.now();
+    }
+    tryNext();
+  }
+  document.querySelectorAll('#demo-slider img[data-srcs]').forEach(upgrade);
+})();
+</script>
+
+
+<script>
+/* Autoplay + dots + arrows + touch swipe */
+(function(){
+  const root = document.getElementById('demo-slider');
+  if (!root) return;
+  const slides = Array.from(root.querySelectorAll('.slide'));
+  const dots = root.querySelector('.dots') || (()=>{ const d=document.createElement('div'); d.className='dots'; root.appendChild(d); return d; })();
+  dots.innerHTML = '';
+  slides.forEach((_,i)=>{ const b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Go to slide '+(i+1)); b.setAttribute('aria-selected',String(i===0)); b.addEventListener('click',()=>{go(i);restart();}); dots.appendChild(b); });
+  let cur = slides.findIndex(s=>s.classList.contains('active')); if(cur<0){slides[0].classList.add('active'); cur=0;}
+  function go(i){ slides[cur]?.classList.remove('active'); cur=(i+slides.length)%slides.length; slides[cur]?.classList.add('active'); Array.from(dots.children).forEach((b,idx)=>b.setAttribute('aria-selected',String(idx===cur))); document.dispatchEvent(new CustomEvent('dh:slide',{detail:{index:cur}})); }
+  function next(){ go(cur+1); }
+  let timer=null, delay=3800; function start(){ timer=setInterval(next,delay);} function stop(){ if(timer) clearInterval(timer); timer=null;} function restart(){stop();start();}
+  root.addEventListener('mouseenter',stop); root.addEventListener('mouseleave',start); start();
+  document.addEventListener('keydown',function(e){ const tag=(document.activeElement&&document.activeElement.tagName)||''; if(/INPUT|TEXTAREA|SELECT/.test(tag)) return; if(e.key==='ArrowRight'){e.preventDefault(); next();} if(e.key==='ArrowLeft'){e.preventDefault(); go(cur-1);} });
+  let sx=0,sy=0,dx=0,dy=0,touching=false; root.addEventListener('touchstart',e=>{ if(!e.touches[0])return; touching=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; dx=dy=0; },{passive:true});
+  root.addEventListener('touchmove',e=>{ if(!touching||!e.touches[0])return; dx=e.touches[0].clientX-sx; dy=e.touches[0].clientY-sy; },{passive:true});
+  root.addEventListener('touchend',()=>{ if(!touching)return; touching=false; if(Math.abs(dx)>42 && Math.abs(dx)>Math.abs(dy)){ if(dx<0) next(); else go(cur-1);} });
+  // expose a navigation method for other widgets
+  window.__dh_go = go;
+})();
+</script>
+
+
+<script>
+(function(){
+  const root = document.getElementById('demo-slider');
+  if(!root || document.getElementById('dh-modal')) return;
+  document.body.insertAdjacentHTML('beforeend', `
+<div class="dh-modal" id="dh-modal" role="dialog" aria-modal="true" aria-label="Preview gallery">
+  <div class="dh-frame">
+    <button class="dh-x" aria-label="Close">✕</button>
+    <button class="dh-prev" aria-label="Previous">‹</button>
+    <img id="dh-modal-img" alt="Preview image">
+    <button class="dh-next" aria-label="Next">›</button>
+    <div class="dh-cap" id="dh-cap"></div>
+  </div>
+</div>
+`.trim());
+  const modal = document.getElementById('dh-modal');
+  const imgEl = document.getElementById('dh-modal-img');
+  const capEl = document.getElementById('dh-cap');
+  const btnClose = modal.querySelector('.dh-x');
+  const btnPrev = modal.querySelector('.dh-prev');
+  const btnNext = modal.querySelector('.dh-next');
+  const slides = Array.from(root.querySelectorAll('.slide'));
+
+  function idx(){ return slides.findIndex(s=>s.classList.contains('active')); }
+  function srcOf(i){ return slides[i].getAttribute('src'); }
+  function capOf(i){ return slides[i].getAttribute('data-caption') || slides[i].getAttribute('alt') || ''; }
+
+  function openAt(i){ i=(i+slides.length)%slides.length; imgEl.src = srcOf(i); capEl.textContent = capOf(i); modal.classList.add('show'); document.body.style.overflow='hidden'; }
+  function close(){ modal.classList.remove('show'); document.body.style.overflow=''; }
+  function next(){ openAt(idx()+1); }
+  function prev(){ openAt(idx()-1); }
+
+  root.addEventListener('click', e=>{ if(e.target.classList.contains('slide')) openAt(slides.indexOf(e.target)); });
+  btnClose.addEventListener('click', close); btnNext.addEventListener('click', next); btnPrev.addEventListener('click', prev);
+  modal.addEventListener('click', e=>{ if(e.target===modal) close(); });
+  document.addEventListener('keydown', e=>{ if(!modal.classList.contains('show')) return; if(e.key==='Escape') close(); if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); });
+})();
+</script>
+
+
+<script>
+/* Thumbnails + deep links (hash #s=) */
+(function(){
+  const root = document.getElementById('demo-slider');
+  if(!root || document.documentElement.hasAttribute('data-dh-adv')) return;
+  document.documentElement.setAttribute('data-dh-adv','1');
+  const slides = Array.from(root.querySelectorAll('.slide'));
+  // Thumbs
+  let thumbs = root.querySelector('.thumbs'); if(!thumbs){ thumbs=document.createElement('div'); thumbs.className='thumbs'; root.appendChild(thumbs); }
+  thumbs.innerHTML='';
+  const dots = root.querySelector('.dots');
+  const thumbImgs = [];
+  slides.forEach((img,i)=>{
+    const b=document.createElement('button'); const t=document.createElement('img'); t.alt=''; t.decoding='async'; t.loading='lazy'; t.src=img.getAttribute('src')||'';
+    b.appendChild(t); b.setAttribute('aria-selected', String(img.classList.contains('active')));
+    b.addEventListener('click',()=>{ (window.__dh_go?window.__dh_go:(j=>{slides.forEach(s=>s.classList.remove('active')); slides[j].classList.add('active');}))(i); });
+    thumbs.appendChild(b); thumbImgs.push(t);
+    img.addEventListener('load',()=>{ t.src=img.currentSrc||img.src; }, {once:false});
+  });
+  function updateSelected(i){
+    if(dots){ Array.from(dots.children).forEach((b,idx)=>b.setAttribute('aria-selected', String(idx===i))); }
+    Array.from(thumbs.children).forEach((b,idx)=>b.setAttribute('aria-selected', String(idx===i)));
+    const p=new URLSearchParams(location.hash.replace(/^#/,'')); p.set('s', String(i+1)); history.replaceState(null,'','#'+p.toString());
+  }
+  // Deep link on load & hashchange
+  function applyHash(){
+    const p=new URLSearchParams(location.hash.replace(/^#/,'')); const s=parseInt(p.get('s')||p.get('slide')||'',10);
+    if(!isNaN(s) && s>=1 && s<=slides.length){ (window.__dh_go?window.__dh_go:(j=>{slides.forEach(s=>s.classList.remove('active')); slides[j].classList.add('active');}))(s-1); updateSelected(s-1); }
+  }
+  applyHash(); window.addEventListener('hashchange', applyHash);
+  // Reflect slide changes
+  document.addEventListener('dh:slide', e=>{ updateSelected(e.detail.index); });
+  // Also observe class changes as a fallback
+  const obs=new MutationObserver(()=>{ const i=slides.findIndex(s=>s.classList.contains('active')); if(i>=0) updateSelected(i); });
+  slides.forEach(s=>obs.observe(s,{attributes:true,attributeFilter:['class']}));
+})();
+</script>
+
+</body>
+</html>
